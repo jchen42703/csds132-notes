@@ -9,4 +9,6 @@
   * [Summary](lec4-2.md/#summary)
   * [Method Overloading](lec4-2.md/#method-overloading)
 * [4-3: Conditionals](lec4-3.md)
+* [4-4: Intro to Strings](lec4-4.md)
+  * Only talks about the `+` operator
 * 
