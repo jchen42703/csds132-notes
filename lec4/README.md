@@ -8,3 +8,5 @@
 * [4-2: Constructors](lec4-2.md)
   * [Summary](lec4-2.md/#summary)
   * [Method Overloading](lec4-2.md/#method-overloading)
+* [4-3: Conditionals](lec4-3.md)
+* 
