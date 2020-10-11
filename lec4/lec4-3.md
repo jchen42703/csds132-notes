@@ -17,8 +17,45 @@ __The "else else-statement" part is optional.__
 3. if the condition is false and the else-statement exists, the else-statement is executed
 4. the next statement of the program is executed
 
-
-
+## Proper Branching v. Nested Branching
+```
+Scanner in = new Scanner(System.in);
+int grade = Integer.parseInt(in.nextLine());
+if (grade >= 90) {
+  System.out.println("You got an A!");
+} else if (grade >= 80) {
+  System.out.println("You got a B!");
+} else if (grade >= 70) {
+  System.out.println("You got a C!");
+} else if (grade >= 60) {
+  System.out.println("You got a D!");
+} else {
+  System.out.println("You got an F!");
+}
+```
+is the same as:
+```
+Scanner in = new Scanner(System.in);
+int grade = Integer.parseInt(in.nextLine());
+if (grade >= 90) {
+  System.out.println("You got an A!");
+} else {
+  if (grade >= 80) {
+    System.out.println("You got a B!");
+  } else {
+    if (grade >= 70) {
+      System.out.println("You got a C!");
+    } else {
+      if (grade >= 60) {
+        System.out.println("You got a D!");
+      } else {
+        System.out.println("You got an F!");
+      }
+    }
+  }
+}
+```
+---
 Attempt 1:  A year is a leap year if is is divisible by 4 but not divisible by 100 unless it is divisible by 400
 
 ```
