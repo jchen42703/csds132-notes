@@ -18,3 +18,5 @@
     * [Why is overloading instead of overriding a problem?](lec4-5.md/#overriding)
     * `@Override`
     * `instanceof` and `getClass()`
+* [4-6: Constructor calls with `super()` and `this()`](lec4-6.md)
+  * [Summary](lec4-6.md/#summary)
