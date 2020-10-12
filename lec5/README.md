@@ -14,3 +14,5 @@
 * [5-7: Creating Strings with `StringBuilder`](lec5-7.md)
 * [5-8: For Loop Example 2](...)
   * Omitted because useless (just a string creation with a for loop example)
+* [5-Class: Review of OOP Guidelines](lec5-class.md)
+  * [Example of why you should use getters and setters instead of the fields directly](lec5-class.md/#example-1)
