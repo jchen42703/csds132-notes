@@ -20,3 +20,6 @@
     * `instanceof` and `getClass()`
 * [4-6: Constructor calls with `super()` and `this()`](lec4-6.md)
   * [Summary](lec4-6.md/#summary)
+* [4-Class: Conditional Statements, Strings, Fields, and Overriding Methods](lec4-class.md)
+  * Review of conditionals, fields/variables, strings, and method overriding
+  * [`super.methodname()` and `super.fieldName` to access parent class overridden methods and parent fields](lec4-class.md/#method-overriding)
