@@ -11,4 +11,10 @@
 * [4-3: Conditionals](lec4-3.md)
 * [4-4: Intro to Strings](lec4-4.md)
   * Only talks about the `+` operator
-* 
+* [4-5: `toString()` and `equals` and Overriding methods](lec4-5.md)
+  * [Overriding methods of Object](lec4-5.md/#overriding-methods-of-object)
+    * `equals()` v. `==`
+  * [Overriding](lec4-5.md/#overriding)
+    * [Why is overloading instead of overriding a problem?](lec4-5.md/#overriding)
+    * `@Override`
+    * `instanceof` and `getClass()`
