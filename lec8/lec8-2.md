@@ -31,6 +31,22 @@ public class Square extends Rectangle implements RegularPolygon {
   * Abstract class is used when you have scenario that all classes has same structure but some same and some different functionality.
     * For partial implementation
 
+## Quiz Questions and Answers
+* __Purpose of interface?__
+  * It allows you to create a common parent type for classes that have the same properties, but those classes are already in different places in the class hierarchy and are not otherwise direct super classes or subclasses of each other.
+* __If you have two classes that have the same properties, but the classes do not follow the "is-a" relation with each other, what should you do?__
+  * Create a common parent type for the two classes that has those common properties. The parent type can be a class, abstract class, or an interface.
+* __What rule must you follow when placing a non-static method in an interface?__
+  * All non-static methods in an interface must be public, non-static method stubs.
+* Suppose we have the following class definition: `public class A implements B {` and suppose we have two variable declarations: `A a;`, `B b;` __Which of the following two assignment statements are legal?__
+```
+   a = b;
+   b = a;
+```
+  * Only `b = a`; Every object of type A is also type B, but not every object of type B is a type A. The other assignment requires an explicit typecast.
+* __Can an interface be a true type or a current type?__
+  * Current type only. You can not instantiate an interface using the new operator, and so the interface cannot be a true type. You can typecast to an interface.
+
 ## Introduction
 Some object-oriented languages such as C++ allow a class to have more than one parent.  For example, class C can extend both classes A and B. This means C will inherit methods from both A and B.  __What if both A and B have a method m(), and inside class C we call method m()?  Whose method is called, A's or B's?__
 
