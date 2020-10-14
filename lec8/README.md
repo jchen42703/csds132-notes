@@ -5,4 +5,5 @@
   * [Summary](lec8-1.md/#summary)
 * [8-2: Java interfaces and Multiple Inheritance](lec8-2.md)
   * [Summary](lec8-2.md/#summary)
+  * [Quiz Q&A](lec8-2.md/#quiz-questions-and-answers)
 * [8-3](lec8-3.md)
