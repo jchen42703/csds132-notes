@@ -3,9 +3,10 @@
 ## Summary
 * __Linked lists__ are lists of nodes that point to the the next chronological node.
   * Easily to increase/decrease size as needed. (insertions/deletions easy + quick to do)
-  * Fast access only to a few elements.
+  * Fast access only to a few elements (need to be sequentially traversed up to the desired element to retrieve said element).
   * Linked list is already in the Java API.
   * Use `Array` when data is fetched often, but use `LinkedList` when insertion/deletions are often
+    * because `Array`s are statically allocated in memory (allocated at __compile time__), while `LinkedLists` are dynamically allocated (memory allocated at __runtime__).
 * __Generic Type__
   * __A generic type is a place holder (usually a single capital letter) that indicates that the type will be specified later.__ You can specify more than one generic type if needed (remember, __generic types will not accept another class just because it is narrower__)
   ```
