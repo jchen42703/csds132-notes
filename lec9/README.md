@@ -12,3 +12,5 @@
   * [Abstract Data Types](lec9-4.md/#abstract-data-types)
   * [Creating a `LinkedList` class](lec9-4.md/#creating-a-linkedlist-class)
   * [Short Note on Exceptions](lec9-4.md/#short-note-on-exceptions)
+* [9-5: Linked Lists and Loops](lec9-5.md)
+  * Good coding snippets for looping through a `LinkedList`
