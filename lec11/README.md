@@ -5,3 +5,5 @@
 * [11-3: Anonymous Classes](lec11-3.md)
 * [11-4: Review and Generics with Static and Non-Static Nested Classes](lec11-4.md)
   * Note: I combined this with lec11-5 because it was also review and discussed generics with nested classes.
+* [11-class: Exceptions](lec11-class.md)
+  * Goes over checked (`try/catch`) and unchecked exceptions with examples
