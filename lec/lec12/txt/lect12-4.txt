@@ -1,0 +1,34 @@
+Anonymous Classes:
+  An anonymous class is one defined in the new expression that is creating the instance of the class.
+
+     new InterfaceToImplement() {  code to override the various methods here };
+
+  or 
+     new ClassToExtend() {  code to extend the class by overriding methods here };
+
+Note, that you should not create new methods when writing an anonymous class, but you should just override existing methods.
+To see why, think about the polymorphism rules.  What is the current-type of an instance of the anonymous class?
+
+  In ButtonGUI, we created an anonymous class for another button's event handler
+
+	    button3.setOnAction(new EventHandler<ActionEvent>)() {   // create an instance of an anonymous class
+	      @Override                                              // that implements the interface EventHandler
+	      public void setOnAction(ActionEvent e) {               // Here we must override the abstract method
+		.... necessary code here ....
+	      }
+	    });
+
+  The value passed into the setOnAction method is the instance of a class that implements the EventHandler interface. 
+  This class has no name, but because it is an EventHandler, we can use this instance anywhere that expects an EventHandler.
+
+  Anonymous classes are very useful when we only need to create a single instance of a class and we are only overriding methods.
+  In these cases, why should we create a separate public class file when we can just define the class where needed in the code?
+
+  Because the anonymous class is created at a specific line of code, it has access to everything available at that line.
+  For example, if you create the anonymous class inside a method, it will have access to the local variables of the method.
+  However, this can create a problem because local variables are allocated from the stack while the instance of the anonymous
+  class is allocated from the heap.  Thus, when the method ends, the anonymous class still exists but those local variables are gone.
+  So, if you want an anonymous class to use a local variable, that variable must be declared "final".
+  Recall that a "final" variable is a variable that will not change values.  Thus, Java can safely copy the value of the variable to another 
+  location that is not the stack. There will be no chance that the variable value will change.
+

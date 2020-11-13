@@ -1,0 +1,72 @@
+Java Collections
+
+   We spent time in class today going over the Java Collections classes from the Java API.
+
+   Java Collections are a set of classes (that implement the Collections interface) that represent abstract data types that store elements.
+   The Collection interface extends the Iterable interface.
+   Two main examples of Collections:
+        1. LinkedList:   just like our LinkedList, but it has arrows going in two directions.
+        2. ArrayList:    a "wrapper" for an array that lets us use generics with the array, and automatically handles the "allocate a new array and copy data over" when the array runs out of memory.
+
+  IMPORTANT: Because both are Collections, we can use them in any code that has Collections.  Also, they both have most of the same methods because these methods are inherited
+     from their parent classes and interfaces.  BUT you must remember what they are.  Just because a method exists in the API does not mean it is a good idea to use it.
+     Accessing an element by index in a LinkedList is a terrible idea because the linked list must run from the beginning, counting as it goes.
+     Similarly, constantly changing the capacity of an ArrayList will require the ArrayList to continually create new arrays and copy the data over.  In is better in this case to use a fixed capacity or to use a LinkedList.
+
+
+Introduction to JavaFX
+
+  JavaFX is the third iteration of a Graphical User Interface (GUI) library for Java.
+    The first was Java AWT.  It was released almost as soon as Java was.  Java AWT is for computer desktop GUI's only.
+    The second was Java Swing.  It was built on top of Java AWT and simplified a lot of the Java AWT routines. 
+      Just like Java AWT, Java Swing is for computer desktop GUI's only.
+    The third is JavaFX.  JavaFX is completely separate from Java Swing and Java AWT.  As a result, it uses its own API that is
+      separate from the regular Java API.
+      It was designed to allow a GUI to be built that can work both on the desktop and on a web page.
+      JavaFX comes standard with Java 8, but with newer versions of Java, JavaFX is separate from the Java JDK and must be downloaded if you want to use it.
+
+   To create a JavaFX application, you need to extend the abstract class javafx.application.Application.  
+     For now there are four important methods of the class you will use, but two you can ignore.
+        The init() method is used to initialize your GUI, but you should not build the graphical part of the GUI here.
+           The init method acts like your constructor for the class, but because of how JavaFX works, you should put your initialization code here and not in the constructor.
+           Generally, the default init we inherit is good enough.
+
+        The start(Stage primaryStage) method is an abstract method that your class must override.  The method should contain all the code to build and display your GUI.
+
+        The stop() method contains code that you want to run when the user exits the GUI.  Usually the default will be good enough for us.
+
+        The launch(String... args) method is a static method that runs the GUI.  When you run launch, it runs the init() method first and then the start() method.
+            There is one catch to the start method.
+            Notice that the launch method is static while the start method is not static.  Usually this means that we have to create an instance of the Application class to run the start method.
+            However, JavaFX will do this for us automatically when the launch method is run.
+            How does Java know what true type instance to create?  Java uses something called "reflection" to find the correct instance to create and then runs it's start method.
+            We will learn about reflection later in the course, but but what that means for us now is that the code to run the launch method must be *inside* the body of our JavaFX class that extends Application.
+
+            You can place launch anywhere inside the class, but the typical thing to do is to place it in the main method for the class.
+
+
+   JavaFX uses theater terminology.
+     The start method takes a "Stage" as input.  A stage is basically a window.
+     Inside the start method, we will create a "Scene" that we place on the "Stage".  The "Scene" contains what our GUI displays.
+     Once the "Stage" is ready, we "show" it.
+
+     The "Scene" can contain any JavaFX gadget.  
+     In lecture, we just placed a button on the scene.  
+     Usually, we will place a "layout manager" on the scene.  The layout mananger dictates how the different GUI gadgets are arranged on the screen.
+      And we then place the GUI gadgets into the layout manager.
+  
+
+	public class MyFirstGUI extends Application {
+  
+	  public void start(Stage primaryStage) {
+	    Scene scene = new Scene(new Button("Click me"));  
+	    primaryStage.setScene(scene);                 
+	    primaryStage.setTitle("My GUI");             
+	    primaryStage.show();                        
+	  }
+  
+	  public static void main(String[] args) {
+	    Application.launch(args);
+	  }
+	}
+
