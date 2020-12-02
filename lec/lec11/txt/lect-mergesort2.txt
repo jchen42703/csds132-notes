@@ -1,0 +1,76 @@
+Implementing the algorithm:
+  We are going to work with the nodes of the list because we need to do a lot of moving around of data.
+  By working on the nodes directly, we can sort them without copying data and thus without using any extra memory.
+  So we will write a private merge sort method that takes an unsorted list of nodes and returns a sorted list of nodes. 
+  (We will use private so we keep our linked list an abstract data type.)
+  We then need a public "wrapper" method so this works on the LinkedList.
+
+	private static <T extends Comparable<? super T>> LLNode<T> mergeSort(LLNode<T> list) { 
+	  ...
+	}
+
+	public static <T extends Comparable<? super T>> void mergeSort(LinkedList<T> list) {
+	  list.setFirstNode(mergeSortNodes(list.getFirstNode()));
+	}
+
+  Of the three steps of the algorithm:
+	1. split the list into two
+	2. sort each half
+	3. merge the sorted halves together
+  which is the easiest to do? 
+    Step 2!  We just use the mergeSort algorithm we are writing!
+
+	
+	private static <T extends Comparable<? super T>> LLNode<T> mergeSort(LLNode<T> list) { 
+	   LLNode<T> list1;  // one half of the list
+	   LLNode<T> list2;  // the other half of the list
+
+	   // 1. split each list into two
+	   // ---- code to split the lists ----
+
+	   // 2. sort each half
+	   list1 = mergeSort(list1);
+	   list2 = mergeSort(list2);
+
+	   // 3. merge the sorted lists together
+	   // ---- code to merge the lists ----
+
+  Now, how to split the list in two?
+    One idea is to think about dealing out a deck of cards.
+    What we will do is to go through the list and set each next pointer to skip the next node and point to the one after it.
+    Once this "unbraiding" is done, we will have two separate lists, one containing all the nodes at odd locations, and one containing all the nodes at even locations.
+    See the split method in OrderedLinkedList.
+
+  How to merge two sorted lists back into one list?
+   Start at the top of the each list.  The smallest element will be the first element of either of these lists.
+   Take the node with the smaller element, remove the node from its list and add it to the new list that will be returned.
+   Repeat the process until one of the two lists runs out.
+   See the merge method in OrderedLinkedList. 
+
+Testing code:
+  We tested insertion sort and merge sort by trying to sort 1,000,000 random numbers:
+
+  Insertion sort:
+	int numToSort = 1000000;
+    	int printRate = 1000;     // used to print a status message since sort is so slow
+    
+    	LinkedList<Integer> list = new LinkedList<Integer>();
+    	for (int i = 0; i < numToSort; i++) {
+      	  LinkedList.insertInOrder((int)(Math.random() * numToSort), list);
+      	  if ((i + 1) % printRate == 0)
+            System.out.println((i+1) + " numbers sorted");
+    	}
+
+  Merge sort:
+	int numToSort = 1000000;
+    
+    	LinkedList<Integer> list = new LinkedList<Integer>();
+    	for (int i = 0; i < numToSort; i++) {
+      	  list.addToFront((int)(Math.random() * numToSort));
+    	}
+	LinkedList.mergeSort(list);
+
+Sorting and Arrays:
+   Note that merge sort will not produce a fast sort if you are trying to sort on a single array.  (Can you see why?)
+   There are other fast sort techniques that work with arrays, and you will learn about them in EECS 233.
+

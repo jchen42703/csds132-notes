@@ -1,0 +1,64 @@
+Sorting
+
+  We want to create a  method that sorts a linked list.   To do so, we must restrict the generic on the linked list to be a type that implements to Comparable interface.
+	<T extends Comparable<? super T>>
+  (Do you remember why we use "? super T"?)
+
+  LinkedList has an insertInOrder method.  We can use that to sort by inserting each element, in order, into the list.
+   This technique is known as "Insertion Sort".
+
+   How many steps does it take to sort a list of n elements using Insertion Sort?
+     The worst case for each step is that each element goes at the end of the list.
+     At first, the list will have nothing in it, but each time we increase the length of the list by 1.  So the worst case will be:
+	1 + 2 + 3 + ... + n = n(n+1)/2 = (approximately) n^2 / 2.
+
+	List size		# steps needed
+	1,000			500,000
+	1,000,000		500,000,000,000
+	1,000,000,000		500,000,000,000,000,000
+
+     Even with a billion operations a second, this will take a long time!
+
+    How about average case?  On average, the element should end up somewhere between the 1/4 and 3/4 location in the list.  Let us use the middle for average,
+      but that still gives us approximately n^2/4, and so on average we only expect it to be twice as fast than the worst case.
+
+  Unlike with searching, most of the obvious sorting algorithms are really slow!  It takes careful analysis to come up with faster algorithms. 
+  Don't fall into the bad habit of using "easy-to-code" algorithms instead of faster and better algorithms.  
+  In lecture, we ran an insertion sort on 1,000,000 items.  It never completed during the lecture hour. 
+  (Since it took over 20 minutes sort 1/4 of the list, and since the running time grows quadratically with the input size, we can estimate that it would take 
+    over 20^2 minutes, or at least 7 hours, to sort the complete list.)
+  In 20 minutes, we coded and ran the merge sort algorithm below.  Merge sort sorted the list in just a few seconds.
+
+Here is a better algorithm:  Merge sort
+
+	1. Split the list into two equal sized halves.
+	2. Sort each half
+	3. Merge the sorted halves together.
+
+   How many steps does it take?
+
+	1. split the list in half:  n steps because we need to traverse the entire list
+	2. sort each half:  ???? we don't know how many steps it takes to sort the whole, how can we know how many steps it takes to sort a half?
+	3. merge the sorted halves together:  n steps if we use a careful algorithm that does not do needless looping
+
+   To determine the total number of steps needed, let T(n) be the number of steps for a list of n elements.
+	T(n) = n + 2 T(n/2) + n  = 2 T(n/2) + 2n
+
+   A trick to determine T(n).  Consider the first iteration of the algorithm, it will do 2n steps to split and merge the lists of size n.
+	At the second iteration, it will do 2(n/2) + 2(n/2) steps to split and merge each of the two lists of size n/2.
+	At the third iteration, it will do 2(n/4) + 2(n/4) + 2(n/4) + 2(n/4) steps to split and merge each of the four lists of size n/4.
+	Etc.
+    So, at each iteration, there is a total of 2n steps to split and merge the lists.  The total number of steps will be 2n * (number of iteration layers)
+    At each iteration, we deal with a list of half the size.  So, at iteration k, the list has size n/(2^{k-1})
+    The number of iterations is k where n/(2^{k-1}) = 1, or k = log_2 n + 1
+    So, the total number of steps needed by merge sort is T(n) = 2n(log_2 n + 1) = 2n log_2 n + 2n
+
+	(Remember that log_2 1000 is approximately 3).
+
+	List size		# steps needed by merge sort
+	1,000			2000 * 10 + 2000 = 22,000
+	1,000,000		2,000,000 * 20 + 2,000,000 = 42,000,000
+	1,000,000,000		2,000,000,000 * 30 + 2,000,000,000 = 62,000,000,000
+
+	Much, much faster than the "obvious" sorting method!!!
+
