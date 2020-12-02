@@ -16,11 +16,10 @@ StringBuilder vs StringBuffer:
    StringBuffer is less efficient, but has its internal methods synchronized (in a hopefully optimal manner) and so is recommended for use in programs that use many threads.
 
 
-ArrayLust vs Vector:
+ArrayList vs Vector:
 
    Both classes wrap an array and provide routines to automatically resize the array (by creating a new array) as needed if the array fills up.
 
       ArrayList is the more efficient class yet is not internally synchronized ad so is recommended for programs where the arraylist will be accessed by a single thread.
 
       Vector is less efficient, but has its internal methods synchronized and so is recommended when you need an arraylist to be shared by multiple threads.
- 
