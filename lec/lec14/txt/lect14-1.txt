@@ -1,0 +1,26 @@
+The Java API and Multi-Threading
+
+   Because the coding in multi-threaded environments is becoming more and more common, Java has classes that are specifically designed to work in this situation.
+   With these classes, the internal code to the class is already synchronized so you can use these classes across multiple threads without having to implement the synchronized locks yourself.
+
+   Before using a class from the API in a multi-threaded program, you must read the API to see if the class is already synchronized or if you must do it explicitly.
+   Here are some examples:
+
+
+StringBuilder vs StringBuffer:
+
+  Both classes are used to create String instances, but:
+
+    StringBuilder is the more efficient class yet is not internally synchronized and so is recommended for programs where the string creation is happening on a single thread.
+
+   StringBuffer is less efficient, but has its internal methods synchronized (in a hopefully optimal manner) and so is recommended for use in programs that use many threads.
+
+
+ArrayLust vs Vector:
+
+   Both classes wrap an array and provide routines to automatically resize the array (by creating a new array) as needed if the array fills up.
+
+      ArrayList is the more efficient class yet is not internally synchronized ad so is recommended for programs where the arraylist will be accessed by a single thread.
+
+      Vector is less efficient, but has its internal methods synchronized and so is recommended when you need an arraylist to be shared by multiple threads.
+ 

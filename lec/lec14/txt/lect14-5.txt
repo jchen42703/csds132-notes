@@ -1,0 +1,21 @@
+Java Packages
+
+  A Java package is a folder containing a bunch of Java classes.  
+  You will notice that the API is organized into such packages/folders.
+
+  To create a package of your own, you place the Java files into a single folder,
+   then place the package command on the top of each file indicating the pachage name.
+   The package name has to be the same name as the folder, and may be inside another folder.
+
+  For example, we placed class coding examples in a folder called "examples" that we placed in a folder called "javahome".  
+  To make this a package, we placed:
+	package javahome.examples;
+  on the top of each Java file in the folder (that we wanted included in the package).
+
+Then to be able to use the Java files in code that is in another folder/package, we must do two things:
+
+  - make sure our compiler knows where to look for the packages by adding the "root folder" of the package to the "classpath" for the compiler.  This classpath will also have to be included when running the program.
+
+  - add an import statement to the top of any Java file that is using our package code.  Here we added
+	import javahome.examples.LinkedList;
+   to use our created LinkedList in a file in another folder from the examples folder.

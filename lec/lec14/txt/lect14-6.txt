@@ -1,0 +1,10 @@
+Jar Files
+  
+  In this short lesson, we demonstrate how to create a jar file on DrJava.
+    - You first must create a project with the java files of your program.
+    - You can then create a jar file.  You should indicate that the jar file is executable, and you should input which class has the main method.
+
+  The jar file is just a collection of Java class files.  (It can contain source files, too, but that is not needed for the jar file to work.)
+    We typically collect programs and libraries into a jar file, and then we can share the jar file with others without having to send all the java and class files.
+    On most systems, a user can just click on an executable jar file to run the program.
+

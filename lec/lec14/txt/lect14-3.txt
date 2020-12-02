@@ -1,0 +1,61 @@
+Threads and Java GUIs, and JavaFX Properties
+
+  All GUIs in Java are multi-threaded and use 2 different threads by default.
+  There is the main thread.  This is the thread that runs the main method, the constructor for the class, etc.
+  Then, there is a thread that does all the display to the screen.
+
+  Threads and JavaFX
+
+     In JavaFX, the thread that displays to the screen is called the JavaFX application thread.
+     The start method as well as the event handler handle methods are run in the JavaFX application thread.
+
+     Problem: The application thread is running the handle methods.  If there is time consuming code run by the handle method, our GUI will freeze while that code runs.
+
+     The BadFXGUI example is an example that demonstrates this problem.  The different buttons cause different actions, with the sort button taking a long time.  While
+        the sort is going on, the window is frozen.
+
+
+  How JavaFX deals with multi-threads:
+	JavaFX adds a few classes to make it a little easier to work with threads.
+
+	1. The Task class is used to collect code that is time consuming that we do not want run on the JavaFX application thread.  We then place the Task into a Thread so that the code is
+           run on a different thread from the JavaFX application thread.
+ 
+	2. To communicate between threads, JavaFX provides a simple coding solution called "properties".
+
+
+JavaFX Properties
+
+  A "property" is a private field along with a public (or protected) getter/setter method pair.  (If a property is "read only" then it will have just the getter method.)
+  The Property class of JavaFX provides routines that manipulate the field, getter and setter methods.  To make sure we don't get confused, coders who use the Property class should
+  follow standard naming schemes (which we are already using in class).
+
+    For example, the Button class has a "boolean property" cancelButton that means it has:
+	- a private boolean field called cancelButton
+	- a public or protected getter method called isCancelButton()
+	- a public or protected setter method called setCancelButton(boolean)
+	- a public or protected method that returns a BooleanProperty called cancelButtonProperty()
+
+   For another example, ProgressBar has a "double property" progress that means it has:
+	- a private double field called progress
+	- public or protected getter method called getProgress()
+	- a public or protected setter method called setProgress(double)
+	- a public or protected method that returns a DoubleProperty called progressProperty()
+
+   One very useful method of the Property class is bind.
+     This links the values of the property of one class with the property of another class so both fields will store the same values.
+     This will even work if the two classes are being run by different threads!
+
+   For example, we can bind the progress "property" of a Task with the progress "property" of a ProgressBar.
+	bar.progressProperty().bind(task.progressProperty());
+
+   The bind method does a lot for us that would otherwise require a lot of coding on our part!
+	When the task's progress field changes (by calling it's setter method), the Task's progressProperty (running on the task's thread)
+          sends an event to the JavaFX Application thread.  
+        An EventHandler in the ProgressBar's progressProperty's code (running on the JavaFX application thread) listens for the event, and when the event arrives,
+          it uses the setter method of it's progress property to update it's progress field and update the GUI display. 
+
+
+   GoodFXGUI does the same as BadFXGUI, but GoodFXGUI uses a Task to move to slow processing off of the JavaFX application thread so that it does not freeze the GUI.
+    GoodFXGUI uses JavaFX properties to communicate from the task back to the JavaFX thread so that the progress bars on the GUI can be updated correctly.
+
