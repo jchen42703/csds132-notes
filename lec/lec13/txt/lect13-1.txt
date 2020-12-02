@@ -1,0 +1,75 @@
+Java 8 Shortcuts for Anonymous classes: The "lambda" expression and the "method reference" expression.
+
+  Java has created two shortcuts that can be used for creating anonymous classes in the special case that the class is implementing an interface that contains a single method stub.
+
+      a. The "lambda" shortcut
+      b. The "method reference" shortcut
+
+        The Java "lambda" shortcut is not a true lambda.  (In programming languages, a lambda expression is an anonymous function that can be stored to a variable, input to another function, returned from a function, etc.)  
+        While the "lambda" shortcut makes it -appear- that we are giving a function as input to a method, we are really giving an instance of an anonymous class as input to the method. 
+
+  The "lambda" shortcut for anonymous classes
+	Example 1: A basic anonymous class with a method that takes one input and no return value:
+	   Recall the EventHandler interface.  It has a single method stub handle(ActionEvent e).
+ 	   Here is code creating an anonymous class implementing the interface: 
+
+	    b.setOnAction(new EventHandler<ActionEvent>() {
+	      public void handle(ActionEvent e) {
+	        System.out.println("I was clicked");
+	      }
+	    });
+
+	Here is the "lambda" shortcut.  Because there is only one method in EventHandler, there is no ambiguity about which method
+         is being overridden.  All we need to know is what the input parameter name is and what the body of the method is.
+	 Java uses the "->" symbol to indicate that we are using the shortcut.
+         How does Java know that this is an EventHandler anonymous class?  Because that is the parameter type for setOnAction!
+
+	    b.setOnAction((ActionEvent e) -> {
+                                               System.out.println("I was clicked");
+	                                     }
+	                                  );
+
+	We can shorten it a little more by noting that the parameter type is also not needed:
+
+	    b.setOnAction((e) -> {
+                                    System.out.println("I was clicked");
+	                         });
+
+        Even more, since there is only one line in the body, we can remove the { }, and since there is only one input parameter, we can remove the ( ) around it to get the very short: 
+
+	    b.setOnAction(e -> System.out.println("I was clicked"));
+
+
+	Example 2: A non-void method in the interface
+
+	   We did an example with the Comparator interface.  It has many methods but a single non-default method stub: compare
+	   Here is an example:
+
+		  public static Comparator<Employee> compareBySalary() {
+		    return new CompareBySalary();
+		  }
+
+		  private static class CompareBySalary implements Comparator<Employee> {
+		    public int compare(Employee e1, Employee e2) {
+		      return (int)((e1.getSalary() - e2.getSalary()) * 100);
+		    }
+		  }
+
+	    We will use the lambda expression.  Java knows that we are creating and returning a Comparator<Employee> because that is the return type of the method.
+	    Comparator has a single (non-default) method stub, and so there is no confusion about which method we are overriding.
+	    Therefore, we can drop the interface name, the method name, and the input type.  All that we need is the name of the input parameters and the body of the method.
+
+		public static Comparator<Employee> compareBySalary() {
+		  return (e1, e2) -> {
+				       return (int)((e1.getSalary() - e2.getSalary()) * 100);
+		                     };
+		}
+
+	    As before we can drop the { } because it is one line, and since the only line is a return statement,
+             we can drop the return.  Java knows that the method has to return a value.  It just needs to know what value.
+
+		public static Comparator<Employee> compareBySalary() {
+		  return (e1, e2) -> (int)((e1.getSalary() - e2.getSalary()) * 100);
+		}
+
+
