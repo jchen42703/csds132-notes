@@ -86,10 +86,24 @@
 
 ## 6. Linked Lists
 For 1-4, see [`practice_code/LinkedList.java`]('practice_code/LinkedList.java')
+
 5. A `DoubleLinkedList` can be traversed in both directions. The disadvantage is that it requires an extra pointer for each operation to be maintained. See: https://www.geeksforgeeks.org/doubly-linked-list/
 
 6. Arrays should be used over a LinkedList when you need to frequently access elements within the array at specific indices. LinkedLists should be used over Arrays when you need to frequently change the size of the list (adding, deleting and inserting elements).
 
 ## 7. Generics
 
-1. Generic types are 
+1. A generic type is a place holder (usually a single capital letter) that indicates that the type will be specified later.
+
+2. Restricting Generics
+  * `T extends S` means that T must be S or narrower.
+  * `T super S` means that T must be S or wider.
+
+3. When you do not care about the type, you can use a wildcard `?`. This is usually when you don't utilize the generic type within the method body or class OR when it is not important to the overall functionality of said method or class.
+
+4. `public static <T extends Comparable<T>> T max(T a, T b, T c)`
+  * `public`: can be accessed by same package classes and different package classes.
+  * `static`: only one copy of this method is stored within the class and can be called without instantiation of said class
+  * `<T extends Comparable<T>>` means that `T` must be `Comparable` with its own type (so must be a child class of Comparable)
+  * `T`: the returned value should be of type `T`
+  * Implementation of the `max` method is in `practice_code`.
