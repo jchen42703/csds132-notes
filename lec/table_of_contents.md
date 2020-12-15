@@ -110,6 +110,20 @@
 * [11-class: Exceptions](lec11-class.md)
   * Goes over checked (`try/catch`) and unchecked exceptions with examples
 
+## Module 12: JavaFX GUI
+
+* [12-1: Java Collections](lec12-1.md)
+* [12-2: Event Driven Programming Paradigm and Java Interfaces](lec12-2.md)
+* [12-3: Debugger](lec12-3.md)
+* [12-4: Anonymous Classes](lec12-4.md)
+
+## Module 13: Advanced Java Features
+
+* [Java 8 Shortcuts for Anonymous classes: The "lambda" expression and the "method reference" expression.](lec13-1.md)
+* [Java 8 Shortcuts for Anonymous classes, Part 2: The "method reference" expression.](lec13-2.md)
+* [Java Optional](lec13-3.md)
+* [Another Example Using Lambdas and Java 8 "Function" Types](lec13-4.md)
+
 ## Module 14: More Advanced Java
 
 * [14-1: Threads in the Java API classes](lec14-1.md)
