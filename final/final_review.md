@@ -107,3 +107,79 @@ For 1-4, see [`practice_code/LinkedList.java`]('practice_code/LinkedList.java')
   * `<T extends Comparable<T>>` means that `T` must be `Comparable` with its own type (so must be a child class of Comparable)
   * `T`: the returned value should be of type `T`
   * Implementation of the `max` method is in `practice_code`.
+
+## 8. Anonymous Classes, Lambda
+
+1. An anonymous class is a local class that is created at the same step as the "new" operator. Generally it is created inline in the body of a method with the `new` keyword.
+  * i.e.
+  ```
+  Comparator<Employee> c = new Comparator<Employee>() {
+  public int compare(Employee e1, Employee e2) {
+    return e1.getNumber() - e2.getNumber();
+    }
+  };
+  ```
+  * Anonymous classes can only access local variables if they are final.
+
+2. An anonymous class can be written as a lambda expression when there is only one method to implement and there is no ambiguity:
+  ```
+  b.setOnAction(new EventHandler<ActionEvent>() {
+  public void handle(ActionEvent e) {
+    System.out.println("I was clicked");
+    }
+  });
+
+  b.setOnAction((ActionEvent e) -> {
+                                 System.out.println("I was clicked");
+                                 }
+                              );
+
+  b.setOnAction(e -> System.out.println("I was clicked"));
+  ```
+  * Other examples:
+    * `Comparator` and `compare`
+
+3. Method references are another way to create anonymous classes in the special case that the `class is implementing an interface that contains a single method stub.`
+  * Is another way of creating an anonymous class using a private method
+  ```
+  // Anonymous Regular
+  b.setOnAction(new EventHandler<ActionEvent>() {
+   public void handle(ActionEvent e) {
+      reset(e);
+    }
+  });
+  // Lambda
+  b.setOnAction(e -> {reset()};);
+  // Method Reference
+  b.addActionListener(this::reset);
+  ```
+
+## 9. Advanced Java
+1. Multithreading is useful because it allows us to run different programs concurrently. This speeds up the overall speed.
+
+2. To launch a new thread, you use the `.start()` method.
+
+3. Event-driven programming revolves around the program waiting for events to occur. The programs must be able to receive events through the respective operating system, and the operating system must need to know how to inform the programs when an event occurs.
+
+4. `Optional` wraps values that may be null. It allows us to easily take care of the case where the value may be null to reduce repetitive code.
+  * `	  total += getSavings().map(a -> a.getBalance()).orElse(0.0);`
+  * Here, `map` takes the anonymous class that implements the `apply` method and returns an `Optional`. Then the `orElse` method handles the case when the `Optional` is null. This allows us to avoid the `if (... == null) else` repetition.
+  * note: `total` does not need to be `Optional`. It can just be a regular primitive type.
+
+## Other
+
+* `Comparable` and `Comparator`
+  * The encompassing class implements `Comparable`
+    * Must implement `compareTo`
+  * Methods return `Comparator` instances
+    * can only implement `compare`
+  ```
+  public static Comparator<Employee> compareBySalary() {
+    return (e1, e2) -> (int)((e1.getSalary() - e2.getSalary()) * 100);
+  }
+  ```
+
+* `Iterable` and `Iterator`
+  * `Iterable`
+    * must implement the `iterator()` method which returns an `Iterator()`
+  * `Iterator` can be a `ListIterator` if needed and is often a nested class.
