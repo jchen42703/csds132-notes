@@ -85,4 +85,11 @@
 7. The Comparator interface is useful when you want to compare two objects. The Iterator interface is useful when you to make the object be iterable.
 
 ## 6. Linked Lists
-1.
+For 1-4, see [`practice_code/LinkedList.java`]('practice_code/LinkedList.java')
+5. A `DoubleLinkedList` can be traversed in both directions. The disadvantage is that it requires an extra pointer for each operation to be maintained. See: https://www.geeksforgeeks.org/doubly-linked-list/
+
+6. Arrays should be used over a LinkedList when you need to frequently access elements within the array at specific indices. LinkedLists should be used over Arrays when you need to frequently change the size of the list (adding, deleting and inserting elements).
+
+## 7. Generics
+
+1. Generic types are 
